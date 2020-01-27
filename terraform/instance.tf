@@ -51,20 +51,20 @@ resource "aws_instance" "dynatracemanagednode" {
 	vpc_security_group_ids = ["${aws_security_group.terraformsg.id}"]
 	
 	#enter the key pair name of the key pair you've previously created on AWS - the value is defined in the vars file 
-	key_name = "${var.AWS_KEYPAIR_NAME}"
+	key_name = var.AWS_KEYPAIR_NAME
 
 	#ami ID and instance type are defined in the vars file 
-  	ami = "${lookup(var.AMIS, var.AWS_REGION)}"
-  	instance_type = "${lookup(var.AWS_INSTANCE_TYPE, var.DYNATRACE_SIZING)}"
+  	ami = lookup(var.AMIS, var.AWS_REGION)
+  	instance_type = lookup(var.AWS_INSTANCE_TYPE, var.DYNATRACE_SIZING)
 	
 	#EC2 instance root volume size
 	root_block_device {
-        volume_size = "${var.ROOT_VOLUME_SIZE}"
+        volume_size = var.ROOT_VOLUME_SIZE
    	}
 
 	#specify a tag (optional) for the EC2 instance
-	tags {
-    	  DynatraceManagedNode = "SpinnedUpin5Minutes"
+	tags = {
+    	  DynatraceManagedNode = "SpunUpin5Minutes"
   	}
 	
 	#remote-exec block
@@ -83,7 +83,8 @@ resource "aws_instance" "dynatracemanagednode" {
 			connection {
 				type = "ssh"
 				user = "ubuntu"
-				private_key = "${file(var.AWS_PRIVATE_KEY)}"
+				host = element(aws_instance.dynatracemanagednode.*.public_ip, 0)
+				private_key = file(var.AWS_PRIVATE_KEY)
 				timeout = "3m"
 				agent = false
 			}
@@ -94,3 +95,4 @@ resource "aws_instance" "dynatracemanagednode" {
 output "connect_to_dynatrace" {
   value = "https://${aws_instance.dynatracemanagednode.public_dns}"
 }
+
