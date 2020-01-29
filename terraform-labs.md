@@ -3,7 +3,7 @@
 
 ## Installing Terraform
 
-* In your linux VM or Linux Subsystem for Windows(My preferred route) , go ahead and run `wget https://releases.hashicorp.com/terraform/0.12.20/terraform_0.12.20_linux_amd64.zip` or `brew install terraform` if you have linuxbrew set up in your vm. 
+* In your linux VM or Linux Subsystem for Windows(My preferred route), go ahead and run `wget https://releases.hashicorp.com/terraform/0.12.20/terraform_0.12.20_linux_amd64.zip` or `brew install terraform` if you have linuxbrew set up in your vm. 
 * If you went the wget route, make sure to unzip the file and move the terraform file to `/bin` to add it to your path
 
 
@@ -20,22 +20,24 @@
 
 So the nice thing about terraform is that if you mess up, you can just run a `terraform destroy` to destroy all your instances, then run a `terraform apply` to recreate everything again. The downside to this is that with the trial environment is that you're gonna have to make a new license for now. 
 
-Create your Dynatrace Managed License (Talk to adam to get steps on how to do that)
+Create your Dynatrace Managed License [Here](https://mc-dev.internal.dynatracelabs.com/index.jsp#accounts)
+You may have to make an account first before you can create a license though. 
 
 
 
 
 ## Editing the Files
 * Go into your Terraform folder and run `terraform init` to get everything ready to go with what you have. 
-* The next step is to go and change your `variables.tf file`
-  * Change the variables you need with the values that you've been given.
-  * Leave the values for  
+* The next step is to go and change your [vars.tf file](terraform/vars.tf)
+  * Change the variables you need with the values that you've been given
+  * If you use the default values for things, just make sure to keep those files out of verison control because then someone could access your entire AWS environment and run lots and lots of paid instances on your dollar. 
 * Run `terraform init`
 * Then `terraform plan`
 * Make sure you have no errors
 * `terraform apply`
+* look at the bottom of the files and make sure that you can access that URL and ssh into those EC2 Instances.
 
-* look at the bottom of the files and make sure 
+
 **NOTE**
 * When you set this up, make sure you have the `dynatrace-monitored = "true"` tag set up for each VM. this will come into play for setting up AWS deep monitoring later down the line. 
 
