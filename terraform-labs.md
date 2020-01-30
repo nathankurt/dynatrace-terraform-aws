@@ -67,6 +67,7 @@ Get this set up by clicking Node 1 in the DT Managed Home and changing the Web U
 
 ### Install Cluster Active Gate
 * Install the cluster active gate on the cluster active gate VM and show it in your hosts menu
+  * Note: When you are downloading these files, the wget won't work unless you add a `--no-check-certificate` flag to the end just because the Cert that the trial license gives you isn't verified
 
 ### Install Environment Active Gate 
 * Install the enviro
@@ -83,7 +84,7 @@ Get this set up by clicking Node 1 in the DT Managed Home and changing the Web U
 
 When you set this up, make sure you use Role Based Authentication, not Key based authentication since that's best practice. If you follow the documentation for it, it should work like a charm. 
 
-Also make sure to set it up with dynatrace tags so it doesn't grab every single thing you've ever done from AWS and charge you money. 
+Also make sure to set it up with the dynatrace tags option enabled and set to `dynatrace-monitored` (for the key) and `true` (as the value) so it doesn't grab every single thing you've ever done from AWS and charge you money. 
 
 
 [Full AWS Monitoring Documentation](https://www.dynatrace.com/support/help/technology-support/cloud-platforms/amazon-web-services/installation/aws-monitoring-with-dynatrace-managed/)
