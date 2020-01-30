@@ -75,8 +75,7 @@ Get this set up by clicking Node 1 in the DT Managed Home and changing the Web U
   * Note: When you are downloading these files, the wget won't work unless you add a `--no-check-certificate` flag to the end just because the Cert that the trial license gives you isn't verified
 
 ### Install Environment Active Gate 
-* Install the enviro
-* nment active gate on the Test-EC2 VM Then show your active gate in your 
+* Install the environment active gate on the Test-EC2 VM Then show your active gate working
 
 ### Install The OneAgent
 * Install The OneAgent on each of the three VMs and show them working in the hosts tab
