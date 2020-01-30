@@ -19,18 +19,23 @@ In this lab, The goal is to use [Terraform](https://www.terraform.io/) to spin u
 
 ## Registering Your AWS Account
 
-* If you haven't already, make an AWS account, go into EBS -> key pairs and create a key pair. Download it to your machine as a .pem file and save it. 
+* If you haven't already, Create an AWS Account
+* Make sure your region is set to N. Virginia (us-east-1)
+* Go into IAM and create a group, name it `admin` and then attach the policy `AdministratorAccess` to it.
+  * Then create a user
+    * Select programmatic Access absolutely and also AWS management console access (if you want) 
+    * Add it to the admin group you just made. 
+  * Click on the user you just made and go to the security credentials tab. 
+    * Click on create access keys and note those down since you won't be able to see the private key again. 
+* go into EBS -> key pairs and create a key pair. Download it to your machine as a .pem file and save it. 
   * You have to give your keys not very much permissions so go ahead and `chmod 400` the pem file
-* Go into IAM and create a user, give it admin rights. 
-  * then create access keys -> security credentials 
-  * Make sure your region is set to N. Virginia (us-east-1)
 
 ## Create a License 
 
-So the nice thing about terraform is that if you mess up, you can just run a `terraform destroy` to destroy all your instances, then run a `terraform apply` to recreate everything again. The downside to this is that with the trial environment is that you're gonna have to make a new license for now. 
+So the nice thing about terraform is that if you mess up, you can just run a `terraform destroy` to destroy all your instances, then run a `terraform apply` to recreate everything again. The downside to this is that with the trial environment is that you're gonna have to make a new license each time you destroy an environment. 
 
 Create your Dynatrace Managed License [Here](https://mc-dev.internal.dynatracelabs.com/index.jsp#accounts)
-You may have to make an account first before you can create a license though. 
+You may have to make an account first in that tab before you can create a license though. 
 
 
 
