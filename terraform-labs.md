@@ -1,10 +1,19 @@
 # Terraform DT Managed Lab
 
+## Purpose
+
+In this lab, The goal is to use [Terraform](https://www.terraform.io/) to spin up an instance of Dynatrace Managed and deploy both a cluster and environment active gates on other EC2 Instances. This will help get you familiar with both the concept of [IaC](https://en.wikipedia.org/wiki/Infrastructure_as_code) as well as basic AWS usage, security practices, and working in a sealed environment. 
+
+### Pre Requisites
+* Side Note: I highly recommend installing WSL since it will allow you to use things like the [terminal from VS Code when you press `Ctrl + ~`](https://dev.to/micahshute/setting-up-windows-subsytem-for-linux-3b7n)
+  * I have my WSL Set up using [hyper and zsh](https://medium.com/@ssharizal/hyper-js-oh-my-zsh-as-ubuntu-on-windows-wsl-terminal-8bf577cdbd97) with the [powerlevel10k theme](https://github.com/romkatv/powerlevel10k)(it's crazy fast, would use) Also I use [this neovim setup](https://github.com/Optixal/neovim-init.vim) and I like it a lot. 
+
 
 ## Installing Terraform
 
-* In your linux VM or Linux Subsystem for Windows(My preferred route), go ahead and run `wget https://releases.hashicorp.com/terraform/0.12.20/terraform_0.12.20_linux_amd64.zip` or `brew install terraform` if you have linuxbrew set up in your vm. 
+* In your linux VM or Windows Subsystem For Linux (My preferred route), go ahead and run `wget https://releases.hashicorp.com/terraform/0.12.20/terraform_0.12.20_linux_amd64.zip` or `brew install terraform` if you have linuxbrew set up in your vm. 
 * If you went the wget route, make sure to unzip the file and move the terraform file to `/bin` to add it to your path
+  
 
 
 
@@ -27,11 +36,10 @@ You may have to make an account first before you can create a license though.
 
 
 ## Editing the Files
-* Go into your Terraform folder and run `terraform init` to get everything ready to go with what you have. 
+* Go into your Terraform folder and run `terraform init` inside of your terraform folder to get everything ready to go with what you have. 
 * The next step is to go and change your [vars.tf file](terraform/vars.tf)
   * Change the variables you need with the values that you've been given
   * If you use the default values for things, just make sure to keep those files out of verison control because then someone could access your entire AWS environment and run lots and lots of paid instances on your dollar. 
-* Run `terraform init`
 * Then `terraform plan`
 * Make sure you have no errors
 * `terraform apply`
@@ -50,11 +58,10 @@ Now the goal is to use that terraform environment that's been spun up for you an
 
 ![Agent License Version](/images/stable-mode-or-bust.png) If your version isn't set to stable or doesn't have a close version to your server, you're gonna have a bad time. 
 
-**PUT IN SCREENSHOT HERE**
 
 ### Access the Dynatrace Environment from the URL they give you(instead of the AWS URL)
-F
-Get this set up by clicking Node 1 in the DT Managed Home and changing the Web UI IP Address to whatever the Dynatrace Managed Public IP is.
+
+Get this set up by clicking Node 1 in the DT Managed Home and changing the Web UI IP Address to whatever the Dynatrace Managed VM Public IP is.
 
 
 
