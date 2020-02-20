@@ -1,5 +1,12 @@
 # Terraform DT Managed Lab
 
+## Disclaimer
+
+This is meant for testing purposes only right now. There are some commands or parameters that you should only use for small test environments like this
+
+In a normal environment that you are setting up, it isn't best practice to use `--check-level 000000` since that stops checking for storage requirements and other things that could be important to setting up a cluster normally. Use this at your own discretion
+
+
 ## Purpose
 
 In this lab, The goal is to use [Terraform](https://www.terraform.io/) to spin up an instance of Dynatrace Managed and deploy both a cluster and environment active gates on other EC2 Instances. This will help get you familiar with both the concept of [IaC](https://en.wikipedia.org/wiki/Infrastructure_as_code) as well as basic AWS usage, security practices, and working in a sealed environment. 
@@ -11,7 +18,7 @@ In this lab, The goal is to use [Terraform](https://www.terraform.io/) to spin u
 
 ## Installing Terraform
 
-* In your linux VM or Windows Subsystem For Linux (My preferred route), go ahead and run `wget https://releases.hashicorp.com/terraform/0.12.20/terraform_0.12.20_linux_amd64.zip` or `brew install terraform` if you have linuxbrew set up in your vm. 
+* In your Linux VM or Windows Subsystem For Linux (My preferred route), go ahead and run `wget https://releases.hashicorp.com/terraform/0.12.20/terraform_0.12.20_linux_amd64.zip` or `brew install terraform` if you have linuxbrew set up in your VM. 
 * If you went the wget route, make sure to unzip the file and move the terraform file to `/bin` to add it to your path
   
 
@@ -44,7 +51,7 @@ You may have to make an account first in that tab before you can create a licens
 * Go into your Terraform folder and run `terraform init` inside of your terraform folder to get everything ready to go with what you have. 
 * The next step is to go and change your [vars.tf file](terraform/vars.tf)
   * Change the variables you need with the values that you've been given
-  * If you use the default values for things, just make sure to keep those files out of verison control because then someone could access your entire AWS environment and run lots and lots of paid instances on your dollar. 
+  * If you use the default values for things, just make sure to keep those files out of version control because then someone could access your entire AWS environment and run lots and lots of paid instances on your dollar. 
 * Then `terraform plan`
 * Make sure you have no errors
 * `terraform apply`
@@ -59,7 +66,7 @@ You may have to make an account first in that tab before you can create a licens
 Now the goal is to use that terraform environment that's been spun up for you and configure it. you can initially access it via the link that's outputted in the terminal at the end of the successful creation. You can log in with the username as `admin` and the password as whatever you set in the initial password form.
 
 **BIG BIG BIG NOTE:**
-* As of when this lab was created (1/29/2020), The dynatrace managed trial environment doesn't like to play nice and the agent version it gives you to set up is straight up bad. It's about 8 versions behind the server version that installs so you can't actually install the oneagent anywhere. The way around this I've found is to go into mission control, clusters -> cluster details. look for your license and cluster. Then set the release group from `early-access` to `stable` Then wait until the link you get for your oneagent/activegate install changes from `1.79 -> 1.85` or whatever the newest stable version is. **IF YOU SKIP THIS STEP, STUFF WILL BREAK**  
+* As of when this lab was created (1/29/2020), The Dynatrace managed trial environment doesn't like to play nice and the agent version it gives you to set up is straight up bad. It's about 8 versions behind the server version that installs so you can't actually install the OneAgent anywhere. The way around this I've found is to go into mission control, clusters -> cluster details. look for your license and cluster. Then set the release group from `early-access` to `stable` Then wait until the link you get for your oneagent/ActiveGate install changes from `1.79 -> 1.85` or whatever the newest stable version is. **IF YOU SKIP THIS STEP, STUFF WILL BREAK**  
 
 ![Agent License Version](/images/stable-mode-or-bust.png) If your version isn't set to stable or doesn't have a close version to your server, you're gonna have a bad time. 
 
@@ -88,7 +95,7 @@ Get this set up by clicking Node 1 in the DT Managed Home and changing the Web U
 
 When you set this up, make sure you use Role Based Authentication, not Key based authentication since that's best practice. If you follow the documentation for it, it should work like a charm. 
 
-Also make sure to set it up with the dynatrace tags option enabled and set to `dynatrace-monitored` (for the key) and `true` (as the value) so it doesn't grab every single thing you've ever done from AWS and charge you money. 
+Also make sure to set it up with the Dynatrace tags option enabled and set to `dynatrace-monitored` (for the key) and `true` (as the value) so it doesn't grab every single thing you've ever done from AWS and charge you money. 
 
 
 [Full AWS Monitoring Documentation](https://www.dynatrace.com/support/help/technology-support/cloud-platforms/amazon-web-services/installation/aws-monitoring-with-dynatrace-managed/)
