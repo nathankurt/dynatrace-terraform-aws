@@ -86,10 +86,7 @@ resource "aws_instance" "dynatracemanagednode" {
     		inline = [
       			"sudo wget -O /tmp/dynatrace-managed.sh ${var.DYNATRACE_DOWNLOAD_URL}",
       			"cd /tmp/",
-				"sudo /bin/sh dynatrace-managed.sh --install-silent --license ${var.DYNATRACE_LICENSE_KEY} --initial-environment ${var.DYNATRACE_INIT_ENV} --initial-first-name ${var.DYNATRACE_INIT_NAME} --initial-last-name ${var.DYNATRACE_INIT_LASTNAME} --initial-email ${var.DYNATRACE_INIT_EMAIL} --initial-pass ${var.DYNATRACE_INIT_PWD} --check-level 000000",
-				# "cd /tmp/",
-				# "wget -O psg-installer.sh https://${aws_instance.dynatracemanagednode.public_dns}/psgwinstaller/unix/latest/${var.DYNATRACE_LICENSE_KEY} --no-check-certificate",
-				# "/bin/sh psg-installer.sh"
+				"sudo /bin/sh dynatrace-managed.sh --install-silent --license ${var.DYNATRACE_LICENSE_KEY} --initial-environment ${var.DYNATRACE_INIT_ENV} --initial-first-name ${var.DYNATRACE_INIT_NAME} --initial-last-name ${var.DYNATRACE_INIT_LASTNAME} --initial-email ${var.DYNATRACE_INIT_EMAIL} --initial-pass ${var.DYNATRACE_INIT_PWD} --check-level 000000"
 			]
 	#the connection block defines the connection params to ssh into the newly created EC2 instance 
 			connection {

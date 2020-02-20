@@ -2,8 +2,8 @@
 # contains the aws access credentials, aws amis per region, aws instance type depending on dynatrace managed sizing 
 # the Dynatrace init params, download URL and License key received by email 
 #
-# Raffaele Talarico
-# 29/08/2017
+# Nathan Kurt 
+# Jan 20th 2020
 
 #############
 # DYNATRACE #
